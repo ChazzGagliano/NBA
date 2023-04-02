@@ -21,11 +21,16 @@ class PlayersController < ApplicationController
     @player = Player.find_by(id: params[:id])
     @player.name = params[:name] || @player.name
     @player.jersey = params[:jersey] || @player.jersey
-@player.team = params[:team] || @player.team
-@player.team = params[:team] || @player.team
+    @player.team = params[:team] || @player.team
+    @player.team = params[:team] || @player.team
     @player.position = params[:position] || @player.position
     @player.save
     render :show
   end
-  
+
+  def destroy
+    @player = Player.find_by(id: params[:id])
+    @player.destroy
+    render json:{message: "Player Destroyed"}
+  end
 end
